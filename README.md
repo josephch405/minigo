@@ -162,13 +162,13 @@ These three files comprise the model, and commands that take a model as an
 argument usually need the path to the model basename, e.g.
 `gs://$BUCKET_NAME/models/000193-trusty`
 
-You'll need to copy them to your local disk.  This fragment copies the latest
-model to the directory specified by `MINIGO_MODELS`
+You'll need to copy them to your local disk.  This fragment copies the files
+associated with model_name to the directory specified by `MINIGO_MODELS`
 
 ```shell
 MINIGO_MODELS=$HOME/minigo-models
 mkdir -p $MINIGO_MODELS
-gsutil ls gs://$BUCKET_NAME/models | tail -3 | xargs -I{} gsutil cp "{}" $MINIGO_MODELS
+gsutil ls gs://$BUCKET_NAME/models | grep model_name | xargs -I{} gsutil cp "{}" $MINIGO_MODELS
 ```
 
 Selfplay
